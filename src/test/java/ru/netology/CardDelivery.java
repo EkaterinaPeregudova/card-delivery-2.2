@@ -37,19 +37,5 @@ public class CardDelivery {
         $(".notification__content").shouldBe(visible, Duration.ofSeconds(15)).shouldHave(exactText("Встреча успешно забронирована на " + newDate));
 
     }
-    @Test
-    void shouldCity() {
-        open("http://localhost:9999");
-        $$("[type=text]").first().setValue("Авд");
-        $("[placeholder='Дата встречи']").sendKeys(CONTROL + "a", DELETE);
-        String newDate = plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        $("[placeholder='Дата встречи']").setValue(newDate);
-        $("[data-test-id=name] [type=text]").setValue("Перегудова Екатерина");
-        $("[name=phone]").setValue("+79091231212");
-        $(".checkbox__box").click();
-        $("div.form-field>[type=button]").submit();
-        $("[type=text] .input__sub").shouldHave(exactText("Доставка в выбранный город недоступна"));
 
-
-    }
 }
