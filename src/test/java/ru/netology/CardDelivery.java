@@ -27,7 +27,7 @@ public class CardDelivery {
     void shouldSendForm() {
         open("http://localhost:9999");
         $$("[type=text]").first().setValue("Москва");
-        $("[placeholder='Дата встречи']").sendKeys(CONTROL + "a", DELETE);
+        $("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE);
         String newDate = plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $("[placeholder='Дата встречи']").setValue(newDate);
         $("[data-test-id=name] [type=text]").setValue("Перегудова Екатерина");
