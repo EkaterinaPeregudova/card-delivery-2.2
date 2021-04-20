@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -46,7 +47,7 @@ public class CardDelivery {
         $("[name=phone]").setValue("+79091231212");
         $(".checkbox__box").click();
         $("div.form-field>[type=button]").submit();
-        $("fieldset > div:nth-child(2) > span > span > span > span > span.input__sub").shouldHave(exactText("Заказ на выбранную дату невозможен"));
+        $(withText("Заказ на выбранную дату невозможен")).shouldBe(visible);
 
     }
 
@@ -61,7 +62,7 @@ public class CardDelivery {
         $("[name=phone]").setValue("+79091231212");
         $(".checkbox__box").click();
         $("div.form-field>[type=button]").submit();
-        $("div:nth-child(3) > span > span > span.input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+        $(withText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.")).shouldBe(visible);
 
     }
 
@@ -76,7 +77,7 @@ public class CardDelivery {
         $("[name=phone]").setValue("+790912312120");
         $(".checkbox__box").click();
         $("div.form-field>[type=button]").submit();
-        $("div:nth-child(4) > span > span > span.input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+        $(withText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).shouldBe(visible);
 
     }
 
@@ -90,9 +91,8 @@ public class CardDelivery {
         $("[data-test-id=name] [type=text]").setValue("Перегудова Екатерина");
         $("[name=phone]").setValue("+790912312120");
         $("div.form-field>[type=button]").submit();
-        $(".checkbox__text").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
+        $(withText("Я соглашаюсь с условиями обработки и использования моих персональных данных")).shouldBe(visible);
 
     }
-
 
 }
